@@ -1,25 +1,26 @@
 import sys
-import os
+
 
 def tail_command_from_stdin():
     """
-       Reads lines from stdin writes them to standard output
+       Reads lines from stdin and writes last 17 lines to standard output
     """
     k_number_to_output = 17
+    result = []
     try:
-        str_number = 1
         while True:
             input_line = input()
-            result = "".join(["\t", str(str_number), " ", input_line])
-            print(result)
-            str_number = str_number + 1
+            result.append(input_line)
     except EOFError:
-        pass
+        if len(result) < k_number_to_output:
+            print("\n".join(result))
+        else:
+            print("\n".join(result[len(result) - k_number_to_output :]))
 
 
 def tail_command_from_file(file_names: list[str]):
     """
-       Reads lines from the given files and writes them to standard output
+       Reads lines from the given files and writes last 10 of them to standard output
 
        Parameters:
            file_names: list of file names to process
@@ -29,7 +30,7 @@ def tail_command_from_file(file_names: list[str]):
 
     for file_name in file_names:
         try:
-            file = open(file_name, 'rb')
+            file = open(file_name, 'r')
         except OSError:
             print("Could not open/read file:", file_name)
             sys.exit()
@@ -40,4 +41,4 @@ def tail_command_from_file(file_names: list[str]):
             if len(lines) < k_number_to_output:
                 print("".join(lines))
                 continue
-            print("".join(lines[len(lines) - k_number_to_output + 1:]))
+            print("".join(lines[len(lines) - k_number_to_output :]))
