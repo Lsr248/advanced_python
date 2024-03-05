@@ -1,4 +1,6 @@
-# task_1 artifacts
+# task2 artifacts
+
+**Пример 1 без файла с 20 строками**
 
 ```commandline
 $ python3 HomeWork1/task2/task2.py
@@ -39,8 +41,9 @@ $ python3 HomeWork1/task2/task2.py
 18
 18
 20
-
 ```
+
+**Пример 2 с 4 строками**
 
 ```commandline
 $ python3 HomeWork1/task2/task2.py
@@ -52,19 +55,24 @@ $ python3 HomeWork1/task2/task2.py
 2
 3
 4
-
 ```
+
+** Пример 3 с несуществующим файлом**
 
 ```commandline
 $ python3 HomeWork1/task2/task2.py not_exists.txt
 Could not open/read file: not_exists.txt
 ```
 
+** Пример 4 с пустым файлом**
+
 ```commandline
 $ python3 HomeWork1/task2/task2.py HomeWork1/task2/test_files/empty.txt 
 
 
 ```
+
+** Пример 4 с одним файлом-аргументом**
 
 ```commandline
     $  python3 HomeWork1/task2/task2.py HomeWork1/task2/test_files/test1.txt 
@@ -78,8 +86,8 @@ $ python3 HomeWork1/task2/task2.py HomeWork1/task2/test_files/empty.txt
 10
 11
 12
-
 ```
+** Пример 5 с несколькими файлами-аргументами**
 
 ```commandline
     $ python3 HomeWork1/task2/task2.py HomeWork1/task2/test_files/test1.txt HomeWork1/task2/test_files/test2.txt 
@@ -101,7 +109,6 @@ $ python3 HomeWork1/task2/task2.py HomeWork1/task2/test_files/empty.txt
 4 In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.
 5 Nullam dictum felis eu pede mollis pretium.
 6
-
 ```
 
 ```commandline
@@ -118,5 +125,4 @@ $ python3 HomeWork1/task2/task2.py HomeWork1/task2/test_files/empty.txt
 11
 12
 Could not open/read file: not_exists.txt
-
 ```

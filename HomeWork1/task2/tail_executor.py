@@ -15,7 +15,7 @@ def tail_command_from_stdin():
         if len(result) < k_number_to_output:
             print("\n".join(result))
         else:
-            print("\n".join(result[len(result) - k_number_to_output :]))
+            print("\n".join(result[len(result) - k_number_to_output:]))
 
 
 def tail_command_from_file(file_names: list[str]):
@@ -36,9 +36,9 @@ def tail_command_from_file(file_names: list[str]):
             sys.exit()
         with file:
             if is_output_name_needed:
-                print(" ".join(["==>", file_name, "<=="]))
+                print(f"==> {file_name} <==")
             lines = file.readlines()
             if len(lines) < k_number_to_output:
                 print("".join(lines))
                 continue
-            print("".join(lines[len(lines) - k_number_to_output :]))
+            print("".join(lines[len(lines) - k_number_to_output:]))

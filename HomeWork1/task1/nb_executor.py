@@ -9,8 +9,7 @@ def nb_command_from_stdin():
         str_number = 1
         while True:
             input_line = input()
-            result = "".join(["\t", str(str_number), " ", input_line])
-            print(result)
+            print(f"\t{str_number} {input_line}")
             str_number = str_number + 1
     except EOFError:
         pass
@@ -36,4 +35,4 @@ def nb_command_from_file(file_names: list[str]):
             for line in lines:
                 result.append("\t" + str(str_number) + " " + str(line))
                 str_number = str_number + 1
-            print("\n".join(result))
+            print("".join(result))
