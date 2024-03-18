@@ -1,4 +1,4 @@
-from HomeWork2.tex_module.tex_module import (
+from HomeWork2.tex_module_src.tex_module import (
     save_code_in_tex_file,
     generate_tex_file_in_str,
     generate_table_content,
