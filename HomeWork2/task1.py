@@ -1,4 +1,8 @@
-from tex_module import save_code_in_tex_file, generate_table_tex_body, generate_tex_file_in_str, TexBody
+from HomeWork2.tex_module.tex_module import (
+    save_code_in_tex_file,
+    generate_tex_file_in_str,
+    generate_table_content,
+)
 import sys
 import os
 
@@ -7,7 +11,7 @@ ARTIFACT_RELATIVE_PATH = "/artifacts/task1/"
 
 def read_table_from_command_line() -> list[list[str]]:
     """
-       Reads lines from stdin writes them to array
+    Reads lines from stdin writes them to array
     """
     table = []
     print("print rows count")
@@ -28,11 +32,11 @@ def read_table_from_command_line() -> list[list[str]]:
 
 def create_table_from_args(input_table: str) -> list[list[str]]:
     """
-       Creates table from input in args
+    Creates table from input in args
     """
     try:
         result_table = []
-        if input_table.startswith('"[[') and input_table.endswith(']]'):
+        if input_table.startswith('"[[') and input_table.endswith("]]"):
             input_table = input_table[2:-2]
         else:
             raise Exception("Wrong format of table")
@@ -59,16 +63,19 @@ def main():
         return
 
     try:
-        tex_code = generate_tex_file_in_str(generate_table_tex_body(table))
+        tex_code = generate_tex_file_in_str(generate_table_content(table))
     except Exception as e:
         print(e)
         return
+
     print("Do you want save tex code to file? Print yes/no")
     answer = input()
     if answer == "yes":
         print("Print filename in format {filename.tex}")
         file_name = input()
-        abs_path_for_saving_file = os.path.abspath(os.getcwd()) + ARTIFACT_RELATIVE_PATH + file_name
+        abs_path_for_saving_file = (
+            os.path.abspath(os.getcwd()) + ARTIFACT_RELATIVE_PATH + file_name
+        )
         save_code_in_tex_file(tex_code, abs_path_for_saving_file)
 
 
