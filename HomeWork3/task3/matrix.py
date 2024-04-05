@@ -1,4 +1,6 @@
 from numpy.lib.mixins import NDArrayOperatorsMixin
+from numpy.core.umath import matmul
+from numpy.linalg import det
 
 
 class Matrix(NDArrayOperatorsMixin):
@@ -10,6 +12,15 @@ class Matrix(NDArrayOperatorsMixin):
             if len(row) != len(matrix[0]):
                 raise ValueError("Wrong shapes of matrix")
         self.matrix_ = matrix
+        self.cache = {}
+
+    def __hash__(self):
+        idx = min(len(self.matrix_), len(self.matrix_[0]))
+        sub_square = [item[:idx] for item in self.matrix_[:idx]]
+        return int(round(det(sub_square)))
+
+    def __eq__(self, other: "Matrix"):
+        return self.matrix_ == other.matrix_
 
     def __str__(self):
         return "\n".join(["\t".join(map(str, row)) for row in self.matrix])
@@ -34,10 +45,15 @@ class Matrix(NDArrayOperatorsMixin):
         ):
             raise ValueError("Two Matrix are expected as arguments")
 
+        other_hash = hash(inputs[1])
+        if ufunc is matmul and self.cache.keys().__contains__(other_hash):
+            return self.cache[other_hash]
+
         arr1 = inputs[0].matrix
         arr2 = inputs[1].matrix
 
         result = generate_matrix_from_ndarray(ufunc(arr1, arr2, **kwargs))
+        self.cache[other_hash] = result
         return result
 
 
